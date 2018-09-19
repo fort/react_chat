@@ -1,0 +1,238 @@
+$shadowDefaults: rgba(#000, .2);
+#chatApp {
+  padding: 0;
+}
+.x2chat {
+  font: normal 13px Arial, sans-serif;
+  background-color: #fff;
+  * {
+    box-sizing: border-box;
+  }
+  &ContactsBox {
+  }
+  &Contact {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    &:not(:last-child) {
+      border-bottom: 1px solid #E0E2E4;
+    }
+    &:hover {
+      cursor: pointer;
+      background-color: #E2EEF6;
+    }
+    &Pic {
+      position: relative;
+      background-color: #606B75;
+      width: 33px;
+      height: 33px;
+      border-radius: 50%;
+      &Ico {
+        color: #fff;
+        text-align: center;
+        line-height: 33px;
+      }
+      &Status {
+        display: none;
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+        width: 10px;
+        height: 10px;
+        background-color: #ccc;
+        border-radius: 50%;
+        &.active {
+          display: block;
+          background-color: #1EC659;
+        }
+      }
+    }
+    &Info {
+      margin-left: 10px;
+      & ._title {
+        color: #606B75;
+      }
+      .mod--badge {
+        position: absolute;
+        right: 10px;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+      }
+    }
+  }
+  //
+  // Talk Popup styles
+  //
+  &--talkWindowList {
+  }
+  &--talkWindow {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 400px;
+    left: calc(50% - 150px);
+    top: calc(50% - 200px);
+    max-width: 100%;
+    max-height: 100%;
+    box-shadow: 0 0 20px $shadowDefaults;
+    z-index: 999999;
+    background-color: #ECEDEE;
+    &._is {
+      &Minimized {
+        height: auto;
+        top: calc(100% - 40px);
+        div[class$="talkHistory"],
+        div[class$="sendMsgBox"] {
+          display: none;
+        }
+        .fa-expand {
+          display: none;
+        }
+      }
+      &Expanded {
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        ._dragHandler {
+          cursor: default;
+        }
+      }
+      &Closed {
+        display: none;
+      }
+      &Active {
+        z-index: 9999999;
+      }
+    }
+    &--header {
+      color: #fff;
+      background-color: #2E4146;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 0;
+      min-height: 40px;
+      &:hover {
+        cursor: move;
+      }
+      ._box1 {
+        display: flex;
+        align-items: center;
+        font-weight: lighter;
+        font-size: 13px;
+        > div:first-child {
+          padding: 0 10px;
+        }
+        ._status {
+          font-size: 10px;
+          color: #B3BABC;
+          margin-top: 2px;
+        }
+      }
+      ._box2 {
+        .mod--badge {
+          float: left;
+          margin-top: 6px;
+          margin-right: 6px;
+        }
+        i {
+          font-size: 12px;
+          display: block;
+          float: left;
+          width: 25px;
+          height: 25px;
+          line-height: 25px;
+          text-align: center;
+          &:hover {
+            border-radius: 4px;
+            cursor: pointer;
+            opacity: .5;
+          }
+        }
+      }
+    }
+  }
+  &--talkHistory {
+    box-shadow: inset 0px 11px 8px -13px $shadowDefaults, inset 0px -11px 8px -13px $shadowDefaults;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    &--inner {
+      overflow-y: auto;
+      width: 100%;
+      max-height: 100%;
+      padding: 15px;
+    }
+    &--item {
+      color: #2D4146;
+      font-size: 12px;
+      &:not(:first-child) {
+        margin-top: 10px;
+      }
+      ._body {
+        text-align: left;
+        background-color: #E0E2E4;
+        padding: 10px;
+        border-radius: 2px;
+        display: inline-block;
+      }
+      ._from {
+        margin-top: 5px;
+        color: #99A2A4;
+        font-size: 8px;
+      }
+      &._ownMsg {
+        text-align: right;
+        ._body {
+          background-color: #fff;
+        }
+      }
+    }
+  }
+  &--sendMsgBox {
+    display: flex;
+    width: 100%;
+    min-height: 40px;
+    background-color: #fff;
+    ._box1 {
+      flex: 0 0 40px;
+      position: relative;
+      background-color: #F2F3F4;
+      i {
+        color: #1EC659;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+    ._box2 {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      > div {
+        font-size: 12px;
+        cursor: text;
+        height: auto;
+        max-height: 140px;
+        overflow: auto;
+        padding: 10px;
+        width: 100%;
+        &:empty:before {
+          color: #A8AEB3;
+          content: attr(placeholder);
+          display: block;
+        }
+      }
+    }
+  }
+}
